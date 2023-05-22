@@ -1,4 +1,3 @@
-#include<algorithm>
 #include "KMeansCluster_vector.h"
 
 
@@ -133,3 +132,4 @@ template< class T >  std::vector<int> KMeansCluster<T>::kMeansClustering() {
 }
 
 
+template< class T > std::vector<int> getKMeansClusteringAssignments( std::vector< std::vector < T > > data ) ;

@@ -1,13 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <Eigen/Dense>  // Eigen library for linear algebra operations
+#include <Eigen/Dense>  
 
 using namespace std;
 using namespace Eigen;
 
-// Function to perform spectral clustering
 vector<int> spectralClustering(const vector<vector<double> >& adjacencyMatrix, int numClusters) {
-    // Convert adjacency matrix to Eigen MatrixXd
     int N = adjacencyMatrix.size();
     MatrixXd A(N, N);
     for (int i = 0; i < N; i++) {
@@ -16,26 +14,21 @@ vector<int> spectralClustering(const vector<vector<double> >& adjacencyMatrix, i
         }
     }
 
-    // Compute the Laplacian matrix
     MatrixXd D = A.colwise().sum().asDiagonal();
     MatrixXd L = D - A;
 
-    // Perform eigenvalue decomposition
     SelfAdjointEigenSolver<MatrixXd> eigensolver(L);
     if (eigensolver.info() != Success) {
         cerr << "Eigenvalue decomposition failed." << endl;
         exit(1);
     }
 
-    // Extract the eigenvectors corresponding to the smallest eigenvalues
     MatrixXd eigenvectors = eigensolver.eigenvectors();
     MatrixXd clusteredData = eigenvectors.block(0, 0, N, numClusters);
 
     std::cout<<eigenvectors<<std::endl;
     std::cout<<clusteredData<<std::endl;
 
-    // Perform k-means clustering on the eigenvectors
-    // Replace this step with your own k-means implementation if desired
     vector<int> labels(N, 0);
 
 

@@ -1,5 +1,5 @@
-#ifndef UTILS_SPECTRAL
-#define UTILS_SPECTRAL
+#ifndef CLUSTERING_UTILS
+#define CLUSTERING_UTILS
 #include<vector>
 #include<numeric>
 #include<string>
